@@ -21,3 +21,22 @@ def display_students(student_list):
     for student in student_list:
         print(format_student_data(student))
     pass
+
+def create_student_id_map(student_list):
+    """
+    Return a dictionary mapping student IDs to their name and major 
+    using a dictionary comprehension.
+    """
+    return {student_id: {"name": name, "major": major} for student_id, name, major in student_list}
+
+
+def group_students_by_major(student_list):
+    """
+    Return a dictionary grouping student names by their respective major 
+    using a dictionary comprehension.
+    """
+    unique_majors = {major for _, _, major in student_list}
+    return {
+        major: [name for _, name, m in student_list if m == major] 
+        for major in unique_majors
+    }
